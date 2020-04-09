@@ -1,0 +1,13 @@
+version: '3'
+services:
+  isc-openvpn:
+    build: .
+    container_name: isc-openvpn
+    image: openvpn-alpine:v0.0.2
+    restart: always
+    volumes:
+      - /data/docker-compose/openvpn/openvpn:/etc/openvpn
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "11194:1194/tcp"
