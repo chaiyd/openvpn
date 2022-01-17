@@ -5,6 +5,7 @@ services:
     container_name: isc-openvpn
     image: openvpn-alpine:v0.0.2
     restart: always
+    network_mode: "host"
     volumes:
       - /data/docker-compose/openvpn/openvpn:/etc/openvpn
     cap_add:
