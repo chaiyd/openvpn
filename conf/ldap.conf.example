@@ -1,0 +1,13 @@
+<LDAP>
+        URL             ldap://ldap.org:389
+        BindDN          "cn=admin,dc=ldap,dc=org"
+        Password        ldap.org
+        Timeout         15
+        TLSEnable       False
+        FollowReferrals yes
+</LDAP>
+<Authorization>
+        BaseDN          "cn=users,dc=ldap,dc=org"
+        SearchFilter    "(uid=%u)"
+        RequireGroup    false
+</Authorization>

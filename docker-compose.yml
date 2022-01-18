@@ -1,14 +1,16 @@
 version: '3'
 services:
-  isc-openvpn:
-    build: .
-    container_name: isc-openvpn
-    image: openvpn-alpine:v0.0.2
+  openvpn:
+    container_name: openvpn
+    image: chaiyd/openvpn:2.5.4
     restart: always
     network_mode: "host"
+    privileged: true
     volumes:
-      - /data/docker-compose/openvpn/openvpn:/etc/openvpn
-    cap_add:
-      - NET_ADMIN
-    ports:
-      - "11194:1194/tcp"
+      - ./data/logs:/etc/openvpn/logs
+      - ./data/key:/etc/openvpn/key
+      - ./data/pki:/etc/openvpn/pki
+        #cap_add:
+        #  - NET_ADMIN
+        #ports:
+        #  - "11194:1194/tcp"

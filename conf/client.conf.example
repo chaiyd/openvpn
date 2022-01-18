@@ -1,0 +1,39 @@
+client
+dev tun
+proto tcp
+remote 0.0.0.0 1194
+
+<ca>
+-----BEGIN CERTIFICATE-----
+#将server上ca.crt文件内容拷贝过来
+-----END CERTIFICATE-----
+</ca>
+<cert>
+-----BEGIN CERTIFICATE-----
+#将server上的/etc/openvpn/easy-rsa/pki/issued/client.crt文件内容拷贝到这里
+-----END CERTIFICATE-----
+</cert>
+<key>
+-----BEGIN PRIVATE KEY-----
+#将server上的/etc/openvpn/easy-rsa/pki/private/client.key文件内容拷贝到这里
+-----END PRIVATE KEY-----
+</key>
+key-direction 1
+<tls-auth>
+-----BEGIN OpenVPN Static key V1-----
+#将server上ta.key文件内容拷贝到这里
+-----END OpenVPN Static key V1-----
+</tls-auth>
+compress lz4-v2
+remote-cert-tls server
+verb 3
+mute-replay-warnings
+resolv-retry infinite
+nobind
+persist-key
+persist-tun
+# ldap 开启账号认证
+#auth-user-pass
+auth-nocache
+auth SHA256
+

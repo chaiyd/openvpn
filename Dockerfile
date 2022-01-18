@@ -1,15 +1,16 @@
-FROM alpine:3.11
+FROM alpine:3.15
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
     && apk add tzdata \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && apk del tzdata \
-    && apk add dumb-init openvpn openvpn-auth-ldap openssl-dev \
+    && apk add dumb-init bash openvpn easy-rsa openvpn-auth-ldap openssl openssl-dev \
     && rm -rf /var/cache/apk/*
 
-ADD openvpn /etc/openvpn
-ADD start.sh /
+RUN ln -s /usr/share/easy-rsa/easyrsa /usr/bin/easyrsa
+ADD conf /etc/openvpn
+ADD start.sh /etc/openvpn
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
-CMD ["/bin/sh","/start.sh"]
+CMD ["/bin/sh","/etc/openvpn/start.sh"]
