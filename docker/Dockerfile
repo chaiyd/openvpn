@@ -9,7 +9,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && rm -rf /var/cache/apk/*
 
 RUN ln -s /usr/share/easy-rsa/easyrsa /usr/bin/easyrsa
-ADD conf /etc/openvpn
+ADD conf /etc/openvpn/conf
 ADD start.sh /etc/openvpn
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]

@@ -3,7 +3,10 @@
 #mkdir /dev/net
 #mknod /dev/net/tun c 10 200
 
-#if [ ! -d /etc/openvpn/key ]; then
+if [ ! -d /etc/openvpn/logs ]; then
+	mkdir -p /etc/openvpn/logs
+fi
+
 if [ "`ls /etc/openvpn/key`" = "" ]; then
         cat <<EOF > /usr/share/easy-rsa/vars
          ##证书有效期
@@ -23,7 +26,7 @@ EOF
 	cp pki/ca.crt /etc/openvpn/key/
 	cp pki/dh.pem /etc/openvpn/key/
 	#cp -r pki /etc/openvpn/
-        exec openvpn --config /etc/openvpn/server.conf
+        exec openvpn --config /etc/openvpn/conf/server.conf
 else
-	exec openvpn --config /etc/openvpn/server.conf
+	exec openvpn --config /etc/openvpn/conf/server.conf
 fi
