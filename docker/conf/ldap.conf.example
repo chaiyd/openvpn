@@ -8,6 +8,6 @@
 </LDAP>
 <Authorization>
         BaseDN          "cn=users,dc=ldap,dc=org"
-        SearchFilter    "(uid=%u)"
+        SearchFilter    "(cn=%u)"
         RequireGroup    false
 </Authorization>
