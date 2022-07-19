@@ -2,7 +2,7 @@ version: '3'
 services:
   openvpn:
     container_name: openvpn
-    image: chaiyd/openvpn:2.5.4
+    image: chaiyd/openvpn:2.5.6-r0
     restart: always
     network_mode: "host"
     privileged: true
