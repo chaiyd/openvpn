@@ -10,7 +10,7 @@ on:
 
 env:
   BASEIMAGE: 'alpine:3.15'
-  OPENVPN_VER: '2.5.7-r0'
+  OPENVPN_VER: '2.5.6-r0'
 
 jobs:
   push_to_registries:
